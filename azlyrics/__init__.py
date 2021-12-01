@@ -13,15 +13,10 @@ app.add_exception_handler(
 
 
 @app.get("/{author}/{song}")
-async def root(author: str, song: str):
-    song_data = get_song(author, song)
+async def author_song(author: str, song: str):
+    return get_song(song, author)
 
-    return (
-        {"error": f"No lyrics found for {song}, {author}"}
-        if song_data.lyrics == ""
-        else {
-            "lyrics": song_data.lyrics,
-            "author": song_data.artist,
-            "title": song_data.title,
-        }
-    )
+
+@app.get("/{song}")
+async def song(song: str):
+    return get_song(song)
