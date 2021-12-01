@@ -11,17 +11,10 @@ app.add_exception_handler(
     errors.RateLimitExceeded, extension._rate_limit_exceeded_handler
 )
 
-cache = {}
-
 
 @app.get("/{author}/{song}")
 async def root(author: str, song: str):
-    key = f"{author}{song}"
-
-    if key not in cache:
-        cache[key] = await get_song(author, song)
-
-    song_data = cache[key]
+    song_data = get_song(author, song)
 
     return (
         {"error": f"No lyrics found for {song}, {author}"}
