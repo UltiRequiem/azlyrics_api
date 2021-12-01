@@ -23,8 +23,12 @@ async def root(author: str, song: str):
 
     song_data = cache[key]
 
-    return {
-        "lyrics": song_data.lyrics,
-        "author": song_data.artist,
-        "title": song_data.title,
-    }
+    return (
+        {"error": f"No lyrics found for {song}, {author}"}
+        if song_data.lyrics == ""
+        else {
+            "lyrics": song_data.lyrics,
+            "author": song_data.artist,
+            "title": song_data.title,
+        }
+    )

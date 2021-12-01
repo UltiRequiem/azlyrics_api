@@ -7,6 +7,6 @@ async def get_song(artist: str, title: str):
     azl.artist = artist
     azl.title = title
 
-    azl.getLyrics(sleep=0)
+    azl.getLyrics()
 
     return azl
