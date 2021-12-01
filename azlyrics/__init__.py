@@ -1,16 +1,30 @@
-from fastapi import FastAPI, Request
-from slowapi.errors import RateLimitExceeded
-from slowapi.extension import Limiter,_rate_limit_exceeded_handler
-from slowapi.util import get_remote_address
+from fastapi import FastAPI
+from slowapi import errors, extension, util
+from .utils import get_song
 
 app = FastAPI()
-limiter =  Limiter(key_func=get_remote_address)
+limiter = extension.Limiter(key_func=util.get_remote_address)
 
-app.state.limiter = Limiter(key_func=get_remote_address)
-app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
+app.state.limiter = limiter
+
+app.add_exception_handler(
+    errors.RateLimitExceeded, extension._rate_limit_exceeded_handler
+)
+
+cache = {}
 
 
-@app.get("/")
-@limiter.limit("8/minute")
-async def root(request : Request):
-    return {"message": "Hello World"}
+@app.get("/{author}/{song}")
+async def root(author: str, song: str):
+    key = f"{author}{song}"
+
+    if key not in cache:
+        cache[key] = await get_song(author, song)
+
+    song_data = cache[key]
+
+    return {
+        "lyrics": song_data.lyrics,
+        "author": song_data.artist,
+        "title": song_data.title,
+    }
