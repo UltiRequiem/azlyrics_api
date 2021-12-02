@@ -1,5 +1,6 @@
 from fastapi import FastAPI
-from slowapi import errors, extension, util, middleware
+from slowapi import errors, extension, middleware, util
+
 from .utils import get_song
 
 app = FastAPI()

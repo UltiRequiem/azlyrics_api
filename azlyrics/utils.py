@@ -1,5 +1,6 @@
-import azapi
 import functools
+
+import azapi
 
 
 @functools.cache

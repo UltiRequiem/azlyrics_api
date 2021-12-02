@@ -4,7 +4,7 @@ WORKDIR /usr/src/app
 
 COPY pyproject.toml poetry.lock ./
 
-RUN pip install poetry && poetry install
+RUN pip install poetry==1.1.11 && poetry install
 
 COPY . .
 
