@@ -1,8 +1,10 @@
 from fastapi import FastAPI
+from fastapi_cache import FastAPICache, decorator as cache
+from fastapi_cache.backends.inmemory import InMemoryBackend
 from slowapi import errors, extension, middleware, util
 
-from .utils import get_song
 from .exceptions import LyricsNotFound
+from .utils import get_song
 
 app = FastAPI()
 
@@ -19,20 +21,25 @@ app.add_exception_handler(
 
 app.add_middleware(middleware.SlowAPIMiddleware)
 
-# TODO: Cache response
-
 
 @app.get("/{artist}/{title}")
+@cache.cache(expire=60)
 async def author_song(artist: str, title: str):
     try:
-        return get_song(title, artist)
+        return await get_song(title, artist)
     except LyricsNotFound:
         return {"error": f"Lyrics not found for {title} of artist {artist}."}
 
 
 @app.get("/{title}")
+@cache.cache(expire=60)
 async def song(title: str):
     try:
-        return get_song(title)
+        return await get_song(title)
     except LyricsNotFound:
         return {"error": f"Lyrics not found for {title}."}
+
+
+@app.on_event("startup")
+async def startup():
+    FastAPICache.init(InMemoryBackend())

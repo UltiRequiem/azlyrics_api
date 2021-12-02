@@ -1,12 +1,9 @@
-import functools
-
 import azapi
 
 from .exceptions import LyricsNotFound
 
 
-@functools.cache
-def get_song(title: str, artist: str = ""):
+async def get_song(title: str, artist: str = ""):
     azl = azapi.AZlyrics("google", accuracy=0.5)
 
     azl.artist, azl.title = artist, title
