@@ -5,7 +5,10 @@ import uvicorn
 
 dotenv.load_dotenv()
 
-config = {}
+config = {
+    "debug": False,
+    "reload": False,
+}
 
 if os.environ.get("ENV") == "development":
     config["debug"], config["reload"] = True, True
