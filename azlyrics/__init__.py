@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from slowapi import errors, extension, middleware, util
 
-from .utils import get_song
+from .utils import get_song_data
 
 app = FastAPI()
 
@@ -18,12 +18,14 @@ app.add_exception_handler(
 
 app.add_middleware(middleware.SlowAPIMiddleware)
 
+# TODO: Cache response
+
 
 @app.get("/{artist}/{title}")
 async def author_song(artist: str, title: str):
-    return get_song(title, artist)
+    return get_song_data(title, artist)
 
 
 @app.get("/{title}")
 async def song(title: str):
-    return get_song(title)
+    return get_song_data(title)
