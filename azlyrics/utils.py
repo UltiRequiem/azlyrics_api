@@ -8,7 +8,7 @@ async def get_song(title: str, artist: str = ""):
 
     azl.artist, azl.title = artist, title
 
-    azl.getLyrics()
+    azl.getLyrics(sleep=0)
 
     if azl.lyrics == "":
         raise LyricsNotFound(f"No lyrics found for {title}.")
