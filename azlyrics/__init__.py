@@ -1,7 +1,8 @@
 from fastapi import FastAPI
 from slowapi import errors, extension, middleware, util
 
-from .utils import get_song_data
+from .utils import get_song
+from .exceptions import LyricsNotFound
 
 app = FastAPI()
 
@@ -23,9 +24,15 @@ app.add_middleware(middleware.SlowAPIMiddleware)
 
 @app.get("/{artist}/{title}")
 async def author_song(artist: str, title: str):
-    return get_song_data(title, artist)
+    try:
+        return get_song(title, artist)
+    except LyricsNotFound:
+        return {"error": f"Lyrics not found for {title} of artist {artist}."}
 
 
 @app.get("/{title}")
 async def song(title: str):
-    return get_song_data(title)
+    try:
+        return get_song(title)
+    except LyricsNotFound:
+        return {"error": f"Lyrics not found for {title}."}
