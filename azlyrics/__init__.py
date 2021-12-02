@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi_cache import FastAPICache
-from fastapi_cache.decorator import cache
 from fastapi_cache.backends.inmemory import InMemoryBackend
+from fastapi_cache.decorator import cache
 from slowapi import errors, extension, middleware, util
 
 from .exceptions import LyricsNotFound
