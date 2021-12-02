@@ -5,7 +5,7 @@ from .utils import get_song
 app = FastAPI()
 
 limiter = extension.Limiter(
-    key_func=util.get_remote_address, default_limits=["10/minute"]
+    key_func=util.get_remote_address, default_limits=["15/minute"]
 )
 
 app.state.limiter = limiter
