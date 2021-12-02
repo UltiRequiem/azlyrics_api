@@ -90,10 +90,7 @@ pathspec = ">=0.9.0,<1"
 platformdirs = ">=2"
 regex = ">=2021.4.4"
 tomli = ">=0.2.6,<2.0.0"
-typing-extensions = [
-    {version = ">=3.10.0.0", markers = "python_version < \"3.10\""},
-    {version = "!=3.10.0.1", markers = "python_version >= \"3.10\""},
-]
+typing-extensions = ">=3.10.0.0"
 
 [package.extras]
 colorama = ["colorama (>=0.4.3)"]
@@ -452,8 +449,8 @@ python-versions = "*"
 
 [metadata]
 lock-version = "1.1"
-python-versions = "^3.9"
-content-hash = "ca19fcab13fb46ddbcf5a2a5a97f10e3bd443bf62ca8040eacebc8c6cdec1f2b"
+python-versions = "3.8.1"
+content-hash = "8784456a07fdd4a4fb009db37745aa0784374fb0f7d127f4921737cfbe8739e7"
 
 [metadata.files]
 anyio = [
