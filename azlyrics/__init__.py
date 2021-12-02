@@ -1,15 +1,21 @@
 from fastapi import FastAPI
-from slowapi import errors, extension, util
+from slowapi import errors, extension, util, middleware
 from .utils import get_song
 
 app = FastAPI()
-limiter = extension.Limiter(key_func=util.get_remote_address)
+
+limiter = extension.Limiter(
+    key_func=util.get_remote_address, default_limits=["10/minute"]
+)
 
 app.state.limiter = limiter
 
 app.add_exception_handler(
     errors.RateLimitExceeded, extension._rate_limit_exceeded_handler
 )
+
+
+app.add_middleware(middleware.SlowAPIMiddleware)
 
 
 @app.get("/{author}/{song}")
