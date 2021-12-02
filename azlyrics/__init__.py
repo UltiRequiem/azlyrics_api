@@ -1,5 +1,6 @@
 from fastapi import FastAPI
-from fastapi_cache import FastAPICache, decorator as cache
+from fastapi_cache import FastAPICache
+from fastapi_cache.decorator import cache
 from fastapi_cache.backends.inmemory import InMemoryBackend
 from slowapi import errors, extension, middleware, util
 
@@ -23,7 +24,7 @@ app.add_middleware(middleware.SlowAPIMiddleware)
 
 
 @app.get("/{artist}/{title}")
-@cache.cache(expire=60)
+@cache(expire=60)
 async def author_song(artist: str, title: str):
     try:
         return await get_song(title, artist)
@@ -32,7 +33,7 @@ async def author_song(artist: str, title: str):
 
 
 @app.get("/{title}")
-@cache.cache(expire=60)
+@cache(expire=60)
 async def song(title: str):
     try:
         return await get_song(title)
