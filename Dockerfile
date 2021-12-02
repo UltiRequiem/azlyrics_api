@@ -4,9 +4,7 @@ WORKDIR /usr/src/app
 
 COPY pyproject.toml poetry.lock ./
 
-RUN pip install --no-cache-dir poetry==1.1.11
-
-RUN poetry install
+RUN pip install --no-cache-dir poetry==1.1.11 && poetry install
 
 COPY . .
 
