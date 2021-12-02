@@ -1,8 +1,8 @@
 import azapi
-from functools import cache
+import functools
 
 
-@cache
+@functools.cache
 def get_song(title: str, artist: str = ""):
     azl = azapi.AZlyrics("google", accuracy=0.5)
 

@@ -18,11 +18,11 @@ app.add_exception_handler(
 app.add_middleware(middleware.SlowAPIMiddleware)
 
 
-@app.get("/{author}/{song}")
-async def author_song(author: str, song: str):
-    return get_song(song, author)
+@app.get("/{artist}/{title}")
+async def author_song(artist: str, title: str):
+    return get_song(title, artist)
 
 
-@app.get("/{song}")
-async def song(song: str):
-    return get_song(song)
+@app.get("/{title}")
+async def song(title: str):
+    return get_song(title)
