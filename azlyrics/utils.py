@@ -4,7 +4,7 @@ from .exceptions import LyricsNotFound
 
 
 async def get_song(title: str, artist: str = ""):
-    azl = azapi.AZlyrics("google", accuracy=0.5)
+    azl = azapi.AZlyrics("google", 0.5)
 
     azl.artist, azl.title = artist, title
 
