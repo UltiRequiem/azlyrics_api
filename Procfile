@@ -1,1 +1,1 @@
-web: uvicorn ddlc:app  --host=0.0.0.0 --port=${PORT}
+web: uvicorn azlyrics:app  --host=0.0.0.0 --port=${PORT}
