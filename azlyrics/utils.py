@@ -1,19 +1,21 @@
-import azapi
+from azapi import AZlyrics
 
 from .exceptions import LyricsNotFound
 
 
-async def get_song(title: str, artist: str = ""):
-    azl = azapi.AZlyrics("google", 0.5)
+def song(title: str, artist: str = ""):
+    AZL = AZlyrics(search_engine="google", accuracy=0.3)
 
-    azl.artist, azl.title = artist, title
+    AZL.artist, AZL.title = artist, title
 
-    azl.getLyrics(sleep=0)
+    AZL.getLyrics(sleep=1)
 
-    if azl.lyrics == "":
-        raise LyricsNotFound(f"No lyrics found for {title}.")
+    if AZL.lyrics == "":
+        raise LyricsNotFound()
+
+    result = vars(AZL)
 
     for key in ["songs", "lyrics_history", "proxies", "accuracy", "search_engine"]:
-        azl.__dict__.pop(key)
+        result.pop(key)
 
-    return azl.__dict__
+    return result

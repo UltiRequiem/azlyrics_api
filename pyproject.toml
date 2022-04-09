@@ -6,7 +6,7 @@ authors = ["Eliaz Bobadilla <eliaz.bobadilladev@gmail.com>"]
 license = "MIT"
 
 [tool.poetry.dependencies]
-python = "3.9.9"
+python = "3.10.4"
 azapi = "3.0.6"
 fastapi = "0.70.0"
 uvicorn = "0.15.0"

@@ -2,8 +2,8 @@
 
 [![CI](https://github.com/UltiRequiem/azlyrics_api/actions/workflows/ci.yaml/badge.svg)](https://github.com/UltiRequiem/azlyrics_api/actions/workflows/ci.yaml)
 
-An API interface for azlyrics,
-it uses [azapi](https://github.com/elmoiv/azapi) under the hood.
+An API interface for azlyrics, it uses [azapi](https://github.com/elmoiv/azapi)
+under the hood.
 
 <div align="center">
   <img src="./assets/cover.png" />
@@ -11,7 +11,8 @@ it uses [azapi](https://github.com/elmoiv/azapi) under the hood.
 
 ## Docs
 
-Check the [automatic generated docs by Swagger](https://azlyrics.herokuapp.com/docs).
+Check the
+[automatic generated docs by Swagger](https://azlyrics.herokuapp.com/docs).
 
 ## Development
 
