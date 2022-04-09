@@ -8,7 +8,7 @@ def song(title: str, artist: str = ""):
 
     AZL.artist, AZL.title = artist, title
 
-    AZL.getLyrics(sleep=1)
+    AZL.getLyrics()
 
     if AZL.lyrics == "":
         raise LyricsNotFound()
