@@ -36,7 +36,8 @@ async def author_song(artist: str, title: str):
         return song(title, artist)
     except LyricsNotFound:
         return {"error": f"Lyrics not found for {title} of artist {artist}."}
-    except:
+    except Exception as error:
+        print(error)
         return {"error": "Something went wrong."}
 
 
@@ -47,7 +48,8 @@ async def song_endpoint(title: str):
         return song(title)
     except LyricsNotFound:
         return {"error": f"Lyrics not found for {title}."}
-    except:
+    except Exception as error:
+        print(error)
         return {"error": "Something went wrong."}
 
 
