@@ -1,13 +1,7 @@
 # [AZLyrics](https://www.azlyrics.com) API
 
-[![CI](https://github.com/UltiRequiem/azlyrics_api/actions/workflows/ci.yaml/badge.svg)](https://github.com/UltiRequiem/azlyrics_api/actions/workflows/ci.yaml)
-
 An API interface for azlyrics, it uses [azapi](https://github.com/elmoiv/azapi)
 under the hood.
-
-<div align="center">
-  <img src="./assets/cover.png" />
-</div>
 
 ## Docs
 
