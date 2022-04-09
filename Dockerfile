@@ -10,4 +10,4 @@ COPY . .
 
 EXPOSE 8080
 
-CMD ["poetry", "run", "uvicorn",  "azlyrics:app", "--host=0.0.0.0", "--port=8080" ]
+CMD ["python", "run.py" ]
