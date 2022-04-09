@@ -4,7 +4,7 @@ from .exceptions import LyricsNotFound
 
 
 def song(title: str, artist: str = ""):
-    AZL = AZlyrics(search_engine="google", accuracy=0.3)
+    AZL = AZlyrics("duckduckgo")
 
     AZL.artist, AZL.title = artist, title
 
